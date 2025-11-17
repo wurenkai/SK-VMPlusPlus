@@ -4,7 +4,7 @@ from torch.cuda.amp import autocast, GradScaler
 from torch.utils.data import DataLoader
 from loader import *
 
-from models.model import MASNet,LossNet
+from models.model import SKVMPlusPlus,LossNet
 from dataset.npy_datasets import NPY_datasets
 from engine import *
 import os
@@ -52,7 +52,7 @@ def main(config):
 
 
     print('#----------Preparing dataset----------#')
-    data_path     = r"E:\data2\eye\gong\ruijing_clic\test_tongji\\"
+    data_path     = r""
     test_dataset  = isic_loader(path_Data = data_path, train = False, Test = True)
     test_loader = DataLoader(test_dataset,
                                 batch_size=1,
@@ -63,7 +63,7 @@ def main(config):
 
     print('#----------Prepareing Models----------#')
     # model_cfg = config.model_config
-    model = MASNet()
+    model = SKVMPlusPlus()
     net = LossNet()
     model.train(True)
     net.eval()
@@ -100,4 +100,5 @@ def main(config):
 
 if __name__ == '__main__':
     config = setting_config
+
     main(config)
